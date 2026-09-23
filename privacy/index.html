@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>隱私權政策｜台灣釣點地圖</title>
+<meta name="description" content="「台灣釣點地圖」會處理哪些資料、存在哪裡，以及怎麼要求刪除。">
+<meta name="theme-color" content="#55affd">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="台灣釣點地圖">
+<meta property="og:title" content="隱私權政策｜台灣釣點地圖">
+<meta property="og:description" content="「台灣釣點地圖」會處理哪些資料、存在哪裡，以及怎麼要求刪除。">
+<meta property="og:image" content="https://timsucompany-gif.github.io/taiwan-fishing-map/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://timsucompany-gif.github.io/taiwan-fishing-map/privacy/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="../assets/favicon-48.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<style>
+:root{--ink:#10304f;--ink2:#3f586f;--line:rgba(16,48,79,.13);--top:#55affd;--bottom:#e2eff3;
+  --glass:rgba(255,255,255,.84);--btn:#10263d}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--bottom)}
+body{margin:0;min-height:100vh;color:var(--ink);
+  background:linear-gradient(180deg,var(--top) 0,#9cd3fb 45%,var(--bottom) 100%);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+a{color:#0b5cad}
+img{max-width:100%}
+.col{position:relative;max-width:480px;min-height:100vh;margin:0 auto;overflow:hidden;
+  background:var(--bottom) url(../assets/hero.jpg) center top/100% auto no-repeat;
+  box-shadow:0 0 48px rgba(16,48,79,.2)}
+/* 插畫到底之後接平色：最後一段淡出，看不到接縫 */
+.col::before{content:"";position:absolute;left:0;right:0;top:calc(min(100vw,480px) * 1.7768 - 100px);height:101px;
+  background:linear-gradient(180deg,rgba(0,0,0,0),var(--bottom))}
+.art{position:relative;padding-top:86%}
+.art.short{padding-top:72%}
+.tag{position:absolute;left:6%;top:6%;width:52%;height:auto;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.85))}
+.card{position:relative;margin:0 14px;padding:20px 18px 18px;border-radius:24px;background:var(--glass);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.75);box-shadow:0 10px 30px rgba(16,48,79,.16)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none}
+.logo{flex:0 0 auto;width:60px;height:60px;border-radius:15px;box-shadow:0 2px 8px rgba(16,48,79,.2)}
+.brand h1,.brand b{margin:0;font-size:23px;line-height:1.25;font-weight:800;letter-spacing:.02em}
+.lead{margin:14px 0 12px;font-size:16.5px;font-weight:600;color:var(--ink)}
+.feat{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+.feat li{display:flex;align-items:center;gap:11px;font-size:15.5px;color:var(--ink2)}
+.feat svg{flex:0 0 auto;width:32px;height:32px;padding:6px;border-radius:10px;background:#e3f1fc;
+  stroke:#1f6fb3;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.stores{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.store{display:flex;flex-direction:column;justify-content:center;min-height:54px;padding:7px 14px;
+  border-radius:14px;background:var(--btn);color:#fff;text-decoration:none;line-height:1.25}
+.store small{font-size:12px;opacity:.82}
+.store b{font-size:17px;font-weight:700}
+.store.off{background:rgba(16,38,61,.07);color:var(--ink2)}
+.foot{position:relative;padding:22px 16px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;font-size:13.5px;
+  color:var(--ink2)}
+.foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-bottom:6px}
+.foot a{color:var(--ink);font-weight:600;text-decoration:none}
+.foot a:hover{text-decoration:underline}
+.kicker{margin:16px 0 2px;font-size:14px;font-weight:600;color:var(--ink2)}
+.place{margin:0;font-size:24px;line-height:1.3;font-weight:800;word-break:break-word}
+.coord{margin:4px 0 16px;font-size:14.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.acts{display:grid;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:10px 16px;
+  border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);
+  font-size:16.5px;font-weight:700;text-decoration:none}
+.btn.primary{border-color:transparent;background:linear-gradient(180deg,#f7c950,#e39b1b);color:#3b2200;
+  box-shadow:0 4px 14px rgba(227,155,27,.35)}
+.btn[hidden]{display:none}
+.hint{margin:12px 2px 0;font-size:13.5px;line-height:1.55;color:var(--ink2)}
+.hint:empty{display:none}
+.dl{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.dl p{margin:0 0 10px;font-size:14.5px;font-weight:600;color:var(--ink2)}
+.doc{max-width:760px;margin:0 auto;padding:14px 14px 0}
+.doc .brand{padding:6px 4px 14px}
+.doc .brand .logo{width:42px;height:42px;border-radius:11px}
+.doc .brand b{font-size:18px}
+.paper{background:#fff;border-radius:22px;padding:26px 22px 30px;box-shadow:0 10px 30px rgba(16,48,79,.12)}
+.paper h1{margin:0 0 2px;font-size:27px;line-height:1.3}
+.paper .date{margin:0 0 18px;font-size:14px;color:var(--ink2)}
+.paper h2{margin:28px 0 8px;padding-top:20px;border-top:1px solid var(--line);font-size:19px;line-height:1.4}
+.paper h3{margin:18px 0 6px;font-size:16.5px}
+.paper p{margin:8px 0}
+.paper ul{margin:8px 0;padding-left:1.35em}
+.paper li{margin:5px 0}
+.paper .box{margin:14px 0;padding:13px 15px;border-radius:14px;background:#eef6fd;font-size:15.5px}
+.todo{padding:0 4px;border-radius:5px;background:#fff1c9;color:#6b4a00}
+@media (max-width:350px){.stores{grid-template-columns:1fr}.brand h1,.brand b{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="doc">
+<a class="brand" href="../"><img class="logo" src="../assets/logo-192.png" alt="" width="42" height="42"><b>台灣釣點地圖</b></a>
+<article class="paper">
+<h1>隱私權政策</h1>
+<p class="date">生效日期：2026-09-23</p>
+
+<p>「台灣釣點地圖」（以下稱本 App）由台灣釣點地圖提供。這份政策說明本 App 和網站 timsucompany-gif.github.io/taiwan-fishing-map 會處理哪些資料、為什麼處理、存在哪裡，以及你可以怎麼要求查詢或刪除。</p>
+<div class="box">不用註冊、不用登入。你的位置只在手機上計算；只有你主動「上傳漁獲」時，那一筆投稿才會送到我們這裡。</div>
+
+<h2>一、位置</h2>
+<ul>
+<li>用來找你附近有紀錄的釣點，以及在地圖上標出你在哪裡。</li>
+<li>位置只在手機上計算，不會傳給我們。</li>
+<li>只有你主動上傳漁獲時，當下的 GPS 位置才會跟著那筆投稿送出（見第三點）。</li>
+<li>你可以隨時在手機的系統設定關掉定位權限，關掉之後仍然可以瀏覽地圖。</li>
+</ul>
+
+<h2>二、只存在你手機裡的資料</h2>
+<ul>
+<li>設定（文字大小、打開 App 時的畫面等）、上次看的地圖位置、會員狀態的暫存。</li>
+<li>背景下載的新版釣點資料。</li>
+<li>投稿用的隨機裝置代碼，以及還沒送出去的投稿（沒有網路時先存著，有網路再送）。</li>
+</ul>
+<p>這些都存在 App 自己的儲存空間，我們看不到；刪除 App 就會一起刪除。</p>
+
+<h2>三、上傳漁獲（投稿）</h2>
+<h3>會送出什麼</h3>
+<ul>
+<li>你選的照片（1～3 張）。上傳前會在手機上縮小、重新存檔，照片原本附帶的拍攝資訊（例如拍攝地點、相機型號）不會一起送出。</li>
+<li>投稿當下的 GPS 位置和誤差範圍。</li>
+<li>你填的魚種、日期、備註。</li>
+<li>你自己選擇填寫的 email。</li>
+<li>送出時間、App 版本、手機系統（iOS 或 Android），以及隨機產生的裝置代碼。裝置代碼只用來擋重複或大量灌入的投稿，不是手機序號，也連不到你的身分。</li>
+</ul>
+<h3>用來做什麼</h3>
+<ul>
+<li>人工審核後，把「位置、魚種、日期」整理進地圖的釣點紀錄。</li>
+<li>email 用來聯絡這筆投稿的事，以及審核通過後寄兌換碼給你。</li>
+<li>照片不公開，只給審核用。地圖上不會出現你的照片、email，或任何認得出你的資訊。</li>
+</ul>
+<h3>存在哪裡、存多久</h3>
+<ul>
+<li>投稿存在我們的 Google 雲端硬碟和 Google 試算表，Google 的伺服器可能位於台灣以外的地區。</li>
+<li>照片和 email 保存到審核、聯絡完成為止，之後刪除；你也可以隨時來信要求提早刪除。</li>
+<li>已經整理進地圖的位置、魚種、日期不含個人資料，會繼續保留。</li>
+</ul>
+<p>不投稿、不留 email，都不影響使用 App。</p>
+
+<h2>四、第三方服務</h2>
+<ul>
+<li><b>地圖圖磚</b>：OpenFreeMap、內政部國土測繪中心。看地圖時手機直接向它們下載地圖圖片，它們會看到你的 IP 位址和正在看的區域，跟一般瀏覽網頁一樣。</li>
+<li><b>資料更新</b>：App 會不定期向本網站、以及天氣潮汐的資料網站（都由 Cloudflare 託管）確認有沒有新資料，Cloudflare 會留下一般的連線紀錄，例如 IP 位址和時間。</li>
+<li><b>導航、街景</b>：按下去時會打開 Google 地圖，之後適用 Google 的隱私權政策。</li>
+<li><b>投稿</b>：存放在我們的 Google 雲端硬碟和 Google 試算表（Google Apps Script 收件）。</li>
+<li><b>廣告</b>：免費版使用 Google AdMob 顯示廣告。AdMob 可能會使用手機的廣告識別碼、IP 位址等資訊來顯示及衡量廣告；iPhone 會先詢問你是否允許追蹤。你可以在手機設定裡重設或限制廣告識別碼。詳見 Google 的隱私權政策。</li>
+<li><b>購買金勾會員</b>：付款由 Apple App Store 或 Google Play 處理，我們拿不到你的付款資料，只會知道購買是否成功。</li>
+</ul>
+
+<h2>五、我們不做的事</h2>
+<ul>
+<li>不出售你的個人資料。</li>
+<li>不在 App 裡放使用行為分析或追蹤程式。</li>
+</ul>
+
+<h2>六、你的權利</h2>
+<p>依個人資料保護法，你可以來信要求查詢、閱覽、複製、補充或更正、停止蒐集處理利用，或刪除你的投稿資料。來信請附上投稿的大約時間和地點，方便我們找到那一筆。</p>
+
+<h2>七、兒童</h2>
+<p>本 App 不是專為 13 歲以下兒童設計，我們不會刻意蒐集兒童的個人資料。</p>
+
+<h2>八、政策修改</h2>
+<p>這份政策修改時，會更新這一頁和上面的生效日期。</p>
+
+<h2>九、聯絡我們</h2>
+<p><a href="mailto:timsucompany@gmail.com">timsucompany@gmail.com</a></p>
+
+</article>
+<footer class="foot"><nav><a href="../">下載 App</a><a href="../privacy/">隱私權政策</a><a href="../upload-terms/">投稿須知</a><a href="mailto:timsucompany@gmail.com">聯絡我們</a></nav><div>© 2026 台灣釣點地圖</div></footer>
+</div>
+</body>
+</html>
