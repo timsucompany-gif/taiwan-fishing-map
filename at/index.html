@@ -107,7 +107,7 @@ img{max-width:100%}
 </div>
 <script>
 (function () {
-  var C = {"app": "台灣釣點地圖", "pkg": "com.timsucompany.taiwanfishingmap", "play": "", "scheme": ""};
+  var C = {"app": "台灣釣點地圖", "pkg": "com.timsucompany.taiwanfishingmap", "play": "", "scheme": "taiwanfishingmap"};
   var q = new URLSearchParams(location.search);
   var ll = (q.get("ll") || "").split(",");
   var lat = parseFloat(ll[0]), lon = parseFloat(ll[1]);
@@ -129,14 +129,19 @@ img{max-width:100%}
   var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   var open = $("at-open");
   if (android && C.pkg) {
-    open.href = "intent://" + location.host + "/at/" + location.search + "#Intent;scheme=https;package=" + C.pkg +
-      ";S.browser_fallback_url=" + encodeURIComponent(C.play || (location.origin + "/")) + ";end";
+    /* 路徑要整段帶上（/taiwan-fishing-map/at/），App 只認這個路徑；2026-10-05 以前少了子路徑，
+       在臉書、LINE 裡按「在 App 打開」對不到 App、沒反應 */
+    open.href = "intent://" + location.host + location.pathname + location.search + "#Intent;scheme=https;package=" +
+      C.pkg + ";S.browser_fallback_url=" +
+      encodeURIComponent(C.play || location.href.replace(/\/at\/.*$/, "/")) + ";end";
     open.hidden = false;
   } else if (ios && C.scheme) {
     open.href = C.scheme + "://at/" + location.search;
     open.hidden = false;
   }
-  if (ios) {
+  if (!open.hidden) {
+    $("at-hint").textContent = "已經裝了 App：在 Facebook、LINE 裡請按上面的「在 App 打開」。";
+  } else if (ios) {
     $("at-hint").textContent = "已經裝了 App 卻停在這一頁：在 LINE、Facebook 裡請先點右上角「用 Safari 開啟」，再按一次連結。";
   }
 })();
