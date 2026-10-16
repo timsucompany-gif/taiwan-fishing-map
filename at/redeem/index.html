@@ -103,13 +103,13 @@ img{max-width:100%}
 <div class="acts"><a class="btn primary" id="rc-open" hidden>在 App 打開</a><button class="btn" id="rc-copy" type="button">複製兌換碼</button></div>
 <p class="hint" id="rc-hint"></p>
 <p class="hint">Android、iPhone 都能用，請先把 App 更新到最新版。每支手機 3 個月可以兌換一次；不會自動扣款。</p>
-<div class="dl"><p>還沒有 App？</p><div class="stores"><a class="store" href="https://apps.apple.com/tw/app/%E5%8F%B0%E7%81%A3%E9%87%A3%E9%BB%9E%E5%9C%B0%E5%9C%96/id6812255450" rel="noopener"><small>下載</small><b>App Store</b></a><span class="store off" aria-disabled="true"><small>即將上架</small><b>Google Play</b></span></div></div>
+<div class="dl"><p>還沒有 App？</p><div class="stores"><a class="store" href="https://apps.apple.com/tw/app/%E5%8F%B0%E7%81%A3%E9%87%A3%E9%BB%9E%E5%9C%B0%E5%9C%96/id6812255450" rel="noopener"><small>下載</small><b>App Store</b></a><a class="store" href="https://play.google.com/store/apps/details?id=com.timsucompany.taiwanfishingmap" rel="noopener"><small>下載</small><b>Google Play</b></a></div></div>
 </main>
 <footer class="foot"><nav><a href="../../">下載 App</a><a href="../../privacy/">隱私權政策</a><a href="../../upload-terms/">上傳須知</a><a href="mailto:timsucompany@gmail.com">聯絡我們</a></nav><div>© 2026 TIM SU</div></footer>
 </div>
 <script>
 (function () {
-  var C = {"pkg": "com.timsucompany.taiwanfishingmap", "play": "", "scheme": "taiwanfishingmap"}, $ = function (id) { return document.getElementById(id); };
+  var C = {"pkg": "com.timsucompany.taiwanfishingmap", "play": "https://play.google.com/store/apps/details?id=com.timsucompany.taiwanfishingmap", "scheme": "taiwanfishingmap"}, $ = function (id) { return document.getElementById(id); };
   var q = new URLSearchParams(location.search);
   var rc = (q.get("rc") || "").toUpperCase().replace(/[^0-9A-Z]/g, "").slice(0, 8);
   if (rc.length !== 8) {
