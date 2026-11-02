@@ -42,6 +42,10 @@ form.cr{display:grid;gap:14px;margin-top:8px}
 .cr-msg{margin:0;padding:12px 14px;border-radius:12px;font-size:15px}
 .cr-msg.ok{background:#e8f6ec;color:#1b5e2b}.cr-msg.no{background:#fdecec;color:#8a1c1c}
 .cr-msg:empty{display:none}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;border-radius:14px;background:#eef3f8}
+.seg label{display:block;font-weight:800}.seg input{position:absolute;opacity:0}
+.seg span{display:block;padding:10px;border-radius:11px;text-align:center;color:var(--ink2);cursor:pointer}
+.seg input:checked+span{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(16,48,79,.15)}
 .cr .urow{display:flex;gap:8px}.cr .urow input{flex:1;min-width:0}
 .cr .ck{flex:0 0 auto;padding:0 14px;border:1px solid #e0a02a;border-radius:12px;background:#fff8e6;color:#7a4c00;font:inherit;font-size:15px;font-weight:800;cursor:pointer}
 .pv{display:flex;gap:12px;align-items:center;margin-top:-6px;padding:10px;border-radius:14px;background:#fff;border:1px solid #dfe7ef}
@@ -129,22 +133,23 @@ img{max-width:100%}
 <article class="paper">
 <h1>YouTuber 合作專區</h1>
 <p class="date">影片放上地圖，觀眾導回你的頻道</p>
-<div class="cr-hero"><h2><span class="cr-yt"><i></i></span>把你的釣魚影片放上地圖</h2>
-<p>台灣釣點地圖的使用者在地圖上找釣點時，會在你拍片的地方看到你的頻道圖示，點一下就是你的影片，直接到 YouTube 看。</p>
-<ul><li>流量全部導回你的頻道：App 裡不播放影片，只顯示縮圖、片名、頻道名稱和連結</li>
+<div class="cr-hero"><h2><span class="cr-yt"><i></i></span>把你的釣魚影片、貼文放上地圖</h2>
+<p>台灣釣點地圖的使用者在地圖上找釣點時，會在你拍片、發文的地方看到你的頻道或帳號圖示，點一下就到 YouTube 或 Instagram 看你的內容。</p>
+<ul><li>流量全部導回你的頻道、帳號：App 裡不播放影片，只顯示縮圖、片名、名稱和連結（Instagram 只顯示帳號名稱和連結）</li>
 <li>免費，不用註冊；一支影片填一次，審核通過後幾個小時內就會出現在 App，不用等新版本</li>
 <li>想修改或拿下來，回覆通知信就好</li></ul></div>
 <h2>放上地圖之前</h2>
-<ul><li>只收你自己頻道的影片（或你有權代表的頻道）。</li>
+<ul><li>YouTube 影片、Instagram 貼文（含 Reels）都收；只收你自己頻道、帳號的（或你有權代表的）。</li>
 <li>地點要能合法釣魚：國家公園海域、保護區、封溪護漁、沒有公告垂釣區的漁港，我們會比對公告，不合法的不放。</li>
 <li>保育類魚種不收；位置請點在實際釣魚的水邊，不用很精準，大概範圍就好。</li></ul>
 <h2>填寫資料</h2>
 <form class="cr" id="cr-form" novalidate>
-<div class="two"><label>頻道名稱<input type="text" name="chName" maxlength="60" required></label>
-<label>頻道網址<em>例如 https://www.youtube.com/@你的頻道</em><span class="urow"><input type="url" name="channel" maxlength="200" required><button type="button" class="ck" id="ck-ch">檢查</button></span></label></div>
+<div class="seg" role="radiogroup" aria-label="平台"><label><input type="radio" name="pf" value="yt" checked><span>YouTube 影片</span></label><label><input type="radio" name="pf" value="ig"><span>Instagram 貼文</span></label></div>
+<div class="two"><label><span id="t-l1">頻道名稱</span><input type="text" name="chName" maxlength="60" required></label>
+<label><span id="t-l2">頻道網址</span><em id="t-e2">例如 https://www.youtube.com/@你的頻道</em><span class="urow"><input type="url" name="channel" maxlength="200" required><button type="button" class="ck" id="ck-ch">檢查</button></span></label></div>
 <div class="pv" id="pv-ch" hidden></div>
 <label>Email<em>只用來通知審核結果，不會公開</em><input type="email" name="email" maxlength="120" required></label>
-<label>影片網址<em>一次一支；Shorts 也可以。在 YouTube 按「分享 › 複製連結」貼上，再按「檢查」看看是不是這支</em><span class="urow"><input type="url" name="url" maxlength="200" required><button type="button" class="ck" id="ck-v">檢查</button></span></label>
+<label><span id="t-l3">影片網址</span><em id="t-e3">一次一支；Shorts 也可以。在 YouTube 按「分享 › 複製連結」貼上，再按「檢查」看看是不是這支</em><span class="urow"><input type="url" name="url" maxlength="200" required><button type="button" class="ck" id="ck-v">檢查</button></span></label>
 <div class="pv" id="pv-v" hidden></div>
 <div class="two"><label>釣點名稱<em>影片裡怎麼叫就怎麼寫，例如「200礁」</em><input type="text" name="spot" maxlength="40" required></label>
 <label>其他叫法<em>選填，用頓號分開；App 搜尋得到</em><input type="text" name="alias" maxlength="80"></label></div>
@@ -155,8 +160,8 @@ img{max-width:100%}
 <label>釣到的魚<em>用頓號分開，例如：鬼頭刀、花煙</em><input type="text" name="fish" maxlength="120" required></label>
 <label>一句重點<em>選填：釣法、季節、時段，30 字內</em><textarea name="tip" maxlength="120"></textarea></label>
 <div class="hp" aria-hidden="true"><label>網站<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-<label class="chk"><input type="checkbox" name="own">這是我的頻道，或我有權代表這個頻道分享</label>
-<label class="chk"><input type="checkbox" name="show">同意台灣釣點地圖在 App 和官網顯示這支影片的縮圖、片名、頻道名稱，並連結到 YouTube</label>
+<label class="chk"><input type="checkbox" name="own"><span id="t-c1">這是我的頻道，或我有權代表這個頻道分享</span></label>
+<label class="chk"><input type="checkbox" name="show"><span id="t-c2">同意台灣釣點地圖在 App 和官網顯示這支影片的縮圖、片名、頻道名稱，並連結到 YouTube</span></label>
 <label class="chk"><input type="checkbox" name="legal">影片裡的地點可以合法釣魚、沒有保育類魚種</label>
 <p class="cr-msg" id="cr-msg" role="status" aria-live="polite"></p>
 <button class="btn primary" id="cr-go" type="submit">送出審核</button>
@@ -206,11 +211,32 @@ img{max-width:100%}
   function urlOf(t) { var m = String(t || "").match(/https?:\/\/\S+/); return m ? m[0].replace(/[)\]」』。，,]+$/, "") : String(t || "").trim(); }
   function escH(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   var F = $("cr-form");
+  /* 平台（2026-11-02：Instagram 也收）：字、檢查、規則跟著換 */
+  var TX = { yt: { l1: "頻道名稱", l2: "頻道網址", e2: "例如 https://www.youtube.com/@你的頻道", l3: "影片網址",
+                   e3: "一次一支；Shorts 也可以。在 YouTube 按「分享 › 複製連結」貼上，再按「檢查」看看是不是這支",
+                   c1: "這是我的頻道，或我有權代表這個頻道分享", c2: "同意台灣釣點地圖在 App 和官網顯示這支影片的縮圖、片名、頻道名稱，並連結到 YouTube" },
+             ig: { l1: "帳號名稱", l2: "帳號網址", e2: "例如 https://www.instagram.com/你的帳號", l3: "貼文網址",
+                   e3: "一次一篇；Reels 也可以。在貼文按「⋯ › 連結」或「分享 › 複製連結」貼上，再按「檢查」打開看看",
+                   c1: "這是我的帳號，或我有權代表這個帳號分享", c2: "同意台灣釣點地圖在 App 和官網顯示這篇貼文的帳號名稱，並連結到 Instagram" } };
+  var IG_ACC = /^https:\/\/(www\.)?instagram\.com\/[A-Za-z0-9_.]{1,30}\/?(\?.*)?$/, IG_POST = /^https:\/\/(www\.)?instagram\.com\/(?:[A-Za-z0-9_.]+\/)?(p|reel|reels|tv)\/[\w\-]{5,}/;
+  function pf() { return F.elements.pf.value === "ig" ? "ig" : "yt"; }
+  function pfUI() {
+    var t = TX[pf()];
+    Object.keys(t).forEach(function (k) { $("t-" + k).textContent = t[k]; });
+    F.elements.url.value = ""; F.elements.channel.value = ""; $("pv-v").hidden = true; $("pv-ch").hidden = true;
+  }
+  [].forEach.call(F.elements.pf, function (r) { r.addEventListener("change", pfUI); });
   ["channel", "url"].forEach(function (n) { F.elements[n].addEventListener("change", function () { this.value = urlOf(this.value); }); });
   $("ck-v").addEventListener("click", function () {
     var inp = F.elements.url, u = urlOf(inp.value), m = u.match(/(?:v=|youtu\.be\/|shorts\/|live\/)([\w-]{11})/), pv = $("pv-v");
     inp.value = u;
     pv.hidden = false;
+    if (pf() === "ig") {
+      if (!IG_POST.test(u)) { pv.className = "pv bad"; pv.innerHTML = '<span class="tx">這不像 Instagram 貼文網址。在貼文按「⋯ › 連結」或「分享 › 複製連結」，再貼到這裡。</span>'; return; }
+      pv.className = "pv";
+      pv.innerHTML = '<span class="tx"><b>打開貼文確認一下</b>看到的是你要分享的那一篇就沒問題　<a href="' + escH(u) + '" target="_blank" rel="noopener">在 Instagram 打開 ›</a></span>';
+      return;
+    }
     if (!m) { pv.className = "pv bad"; pv.innerHTML = '<span class="tx">這不像 YouTube 影片網址。在影片下面按「分享 › 複製連結」，再貼到這裡。</span>'; return; }
     var w = "https://www.youtube.com/watch?v=" + m[1];
     pv.className = "pv";
@@ -228,6 +254,12 @@ img{max-width:100%}
     var inp = F.elements.channel, u = urlOf(inp.value), pv = $("pv-ch");
     inp.value = u;
     pv.hidden = false;
+    if (pf() === "ig") {
+      if (!IG_ACC.test(u)) { pv.className = "pv bad"; pv.innerHTML = '<span class="tx">這不像 Instagram 個人頁網址，例如 https://www.instagram.com/你的帳號。</span>'; return; }
+      pv.className = "pv";
+      pv.innerHTML = '<span class="tx"><b>打開你的帳號確認一下</b>看到的是你的帳號就沒問題　<a href="' + escH(u) + '" target="_blank" rel="noopener">打開帳號 ›</a></span>';
+      return;
+    }
     if (!/^https:\/\/(www\.|m\.)?youtube\.com\/(@[^\/?#\s]+|channel\/[\w\-]+|c\/[^\/?#]+)/.test(u)) {
       pv.className = "pv bad";
       pv.innerHTML = '<span class="tx">這不像 YouTube 頻道網址。到你的頻道首頁複製網址，或寫 https://www.youtube.com/@你的頻道。</span>';
@@ -245,7 +277,7 @@ img{max-width:100%}
     f.elements.url.value = urlOf(f.elements.url.value);
     f.elements.channel.value = urlOf(f.elements.channel.value);
     var v = function (n) { return (f.elements[n].value || "").trim(); };
-    var body = { kind: "creator", id: sid, chName: v("chName"), channel: v("channel"), email: v("email"), url: v("url"),
+    var body = { kind: "creator", pf: pf(), id: sid, chName: v("chName"), channel: v("channel"), email: v("email"), url: v("url"),
                  spot: v("spot"), alias: v("alias"), area: v("area"), fish: v("fish"), tip: v("tip"), lat: pin.lat, lon: pin.lon,
                  hp: v("website"), agree: { own: f.elements.own.checked, show: f.elements.show.checked, legal: f.elements.legal.checked } };
     var b = $("cr-go");
