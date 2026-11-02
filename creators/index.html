@@ -42,6 +42,12 @@ form.cr{display:grid;gap:14px;margin-top:8px}
 .cr-msg{margin:0;padding:12px 14px;border-radius:12px;font-size:15px}
 .cr-msg.ok{background:#e8f6ec;color:#1b5e2b}.cr-msg.no{background:#fdecec;color:#8a1c1c}
 .cr-msg:empty{display:none}
+.cr .urow{display:flex;gap:8px}.cr .urow input{flex:1;min-width:0}
+.cr .ck{flex:0 0 auto;padding:0 14px;border:1px solid #e0a02a;border-radius:12px;background:#fff8e6;color:#7a4c00;font:inherit;font-size:15px;font-weight:800;cursor:pointer}
+.pv{display:flex;gap:12px;align-items:center;margin-top:-6px;padding:10px;border-radius:14px;background:#fff;border:1px solid #dfe7ef}
+.pv[hidden]{display:none}.pv .th{flex:0 0 auto;width:128px;aspect-ratio:16/9;border-radius:9px;background:#20262d center/cover no-repeat}
+.pv .tx{flex:1;min-width:0;font-size:14px;line-height:1.5;color:var(--ink2)}.pv .tx b{display:block;color:var(--ink)}
+.pv.bad{background:#fdecec;border-color:#f3c7c7}.pv.bad .tx{color:#8a1c1c}
 @media (max-width:520px){.cr .two{grid-template-columns:1fr}}
 </style>
 <style>
@@ -135,9 +141,11 @@ img{max-width:100%}
 <h2>填寫資料</h2>
 <form class="cr" id="cr-form" novalidate>
 <div class="two"><label>頻道名稱<input type="text" name="chName" maxlength="60" required></label>
-<label>頻道網址<em>例如 https://www.youtube.com/@你的頻道</em><input type="url" name="channel" maxlength="200" required></label></div>
+<label>頻道網址<em>例如 https://www.youtube.com/@你的頻道</em><span class="urow"><input type="url" name="channel" maxlength="200" required><button type="button" class="ck" id="ck-ch">檢查</button></span></label></div>
+<div class="pv" id="pv-ch" hidden></div>
 <label>Email<em>只用來通知審核結果，不會公開</em><input type="email" name="email" maxlength="120" required></label>
-<label>影片網址<em>一次一支；Shorts 也可以</em><input type="url" name="url" maxlength="200" required></label>
+<label>影片網址<em>一次一支；Shorts 也可以。在 YouTube 按「分享 › 複製連結」貼上，再按「檢查」看看是不是這支</em><span class="urow"><input type="url" name="url" maxlength="200" required><button type="button" class="ck" id="ck-v">檢查</button></span></label>
+<div class="pv" id="pv-v" hidden></div>
 <div class="two"><label>釣點名稱<em>影片裡怎麼叫就怎麼寫，例如「200礁」</em><input type="text" name="spot" maxlength="40" required></label>
 <label>其他叫法<em>選填，用頓號分開；App 搜尋得到</em><input type="text" name="alias" maxlength="80"></label></div>
 <label>地區<em>選填，例如：新北市瑞芳區・鼻頭角漁港外</em><input type="text" name="area" maxlength="60"></label>
@@ -194,12 +202,49 @@ img{max-width:100%}
     return "cr" + Array.prototype.map.call(a, function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
   }
   var sid = id();
+  /* 網址「檢查」（2026-11-02）：影片抓縮圖、片名、頻道給他確認；頻道直接開新分頁看。貼一整段分享文字也行，只留網址 */
+  function urlOf(t) { var m = String(t || "").match(/https?:\/\/\S+/); return m ? m[0].replace(/[)\]」』。，,]+$/, "") : String(t || "").trim(); }
+  function escH(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  var F = $("cr-form");
+  ["channel", "url"].forEach(function (n) { F.elements[n].addEventListener("change", function () { this.value = urlOf(this.value); }); });
+  $("ck-v").addEventListener("click", function () {
+    var inp = F.elements.url, u = urlOf(inp.value), m = u.match(/(?:v=|youtu\.be\/|shorts\/|live\/)([\w-]{11})/), pv = $("pv-v");
+    inp.value = u;
+    pv.hidden = false;
+    if (!m) { pv.className = "pv bad"; pv.innerHTML = '<span class="tx">這不像 YouTube 影片網址。在影片下面按「分享 › 複製連結」，再貼到這裡。</span>'; return; }
+    var w = "https://www.youtube.com/watch?v=" + m[1];
+    pv.className = "pv";
+    pv.innerHTML = '<span class="th" style="background-image:url(https://i.ytimg.com/vi/' + m[1] + '/mqdefault.jpg)"></span><span class="tx"><b id="pv-t">是這支影片嗎？</b>' +
+                   '<span id="pv-c">看縮圖確認一下</span><br><a href="' + w + '" target="_blank" rel="noopener">在 YouTube 打開看看 ›</a></span>';
+    fetch("https://www.youtube.com/oembed?format=json&url=" + encodeURIComponent(w)).then(function (r) { return r.ok ? r.json() : null; }).then(function (o) {
+      if (!o) { return; }
+      $("pv-t").textContent = o.title || "是這支影片嗎？";
+      $("pv-c").textContent = "頻道：" + (o.author_name || "");
+      if (o.author_name && !F.elements.chName.value.trim()) { F.elements.chName.value = o.author_name; }
+      if (o.author_url && !F.elements.channel.value.trim()) { F.elements.channel.value = o.author_url; }
+    }).catch(function () {});
+  });
+  $("ck-ch").addEventListener("click", function () {
+    var inp = F.elements.channel, u = urlOf(inp.value), pv = $("pv-ch");
+    inp.value = u;
+    pv.hidden = false;
+    if (!/^https:\/\/(www\.|m\.)?youtube\.com\/(@[^\/?#\s]+|channel\/[\w\-]+|c\/[^\/?#]+)/.test(u)) {
+      pv.className = "pv bad";
+      pv.innerHTML = '<span class="tx">這不像 YouTube 頻道網址。到你的頻道首頁複製網址，或寫 https://www.youtube.com/@你的頻道。</span>';
+      return;
+    }
+    pv.className = "pv";
+    pv.innerHTML = '<span class="tx"><b>打開你的頻道確認一下</b>看到的是你的頻道就沒問題　<a href="' + escH(u) + '" target="_blank" rel="noopener">打開頻道 ›</a></span>';
+  });
   function say(t, ok) { var m = $("cr-msg"); m.textContent = t; m.className = "cr-msg " + (ok ? "ok" : "no"); m.scrollIntoView({ block: "center", behavior: "smooth" }); }
   $("cr-form").addEventListener("submit", function (e) {
     e.preventDefault();
     if (!C.ep) { say("收件還沒開，請先寄信給我們。", false); return; }
     if (!pin) { say("請在地圖上點出釣點的位置。", false); return; }
-    var f = this, v = function (n) { return (f.elements[n].value || "").trim(); };
+    var f = this;
+    f.elements.url.value = urlOf(f.elements.url.value);
+    f.elements.channel.value = urlOf(f.elements.channel.value);
+    var v = function (n) { return (f.elements[n].value || "").trim(); };
     var body = { kind: "creator", id: sid, chName: v("chName"), channel: v("channel"), email: v("email"), url: v("url"),
                  spot: v("spot"), alias: v("alias"), area: v("area"), fish: v("fish"), tip: v("tip"), lat: pin.lat, lon: pin.lon,
                  hp: v("website"), agree: { own: f.elements.own.checked, show: f.elements.show.checked, legal: f.elements.legal.checked } };
