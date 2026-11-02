@@ -53,6 +53,51 @@ form.cr{display:grid;gap:14px;margin-top:8px}
 .pv .tx{flex:1;min-width:0;font-size:14px;line-height:1.5;color:var(--ink2)}.pv .tx b{display:block;color:var(--ink)}
 .pv.bad{background:#fdecec;border-color:#f3c7c7}.pv.bad .tx{color:#8a1c1c}
 @media (max-width:520px){.cr .two{grid-template-columns:1fr}}
+  .apz-demo{position:relative;height:178px;margin:0 0 12px;border-radius:18px;overflow:hidden;background:#cfe6f5;box-shadow:inset 0 0 0 1px rgba(20,45,70,.06)}
+  .apz-demo svg.land{position:absolute;inset:0;width:100%;height:100%}
+  .apd-fish{position:absolute;width:26px;height:20px;border-radius:7px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+  .apd-fish::after{content:"";position:absolute;right:-5px;top:-5px;width:11px;height:11px;border-radius:50%;background:#f0a020;border:1.5px solid #fff}
+  .apd-pin{position:absolute;left:32%;top:40px;width:56px;height:62px;margin-left:-28px;animation:apdDrop 8s cubic-bezier(.3,1.5,.5,1) infinite}
+  .apd-pin.ig{left:70%;animation-name:apdDrop2}
+  .apd-pin.ig i{border:3.5px solid transparent;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(45deg,#f9ce34,#ee2a7b 50%,#6228d7) border-box;display:flex;align-items:center;justify-content:center;color:#d62976}
+  .apd-pin.ig i svg{width:26px;height:26px}
+  .apd-pin.ig b{display:none}
+  .apd-pin i{position:absolute;left:0;top:0;width:56px;height:56px;box-sizing:border-box;border-radius:50%;border:3.5px solid #ff0000;
+             background:#20262d center/cover no-repeat;box-shadow:0 0 0 2.5px #fff,0 3px 9px rgba(0,0,0,.35)}
+  .apd-pin b{position:absolute;left:15px;top:46px;width:26px;height:18px;border-radius:6px;background:#ff0000;box-shadow:0 0 0 2px #fff,0 1px 3px rgba(0,0,0,.35)}
+  .apd-pin b::before{content:"";position:absolute;left:10px;top:4.5px;border-left:8px solid #fff;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+  .apd-tap{position:absolute;left:32%;top:66px;width:34px;height:34px;margin-left:-6px;border-radius:50%;background:rgba(255,255,255,.75);
+           box-shadow:0 0 0 2px rgba(22,34,47,.25);animation:apdTap 8s ease infinite}
+  .apd-tap.ig{left:70%;animation-name:apdTap2}
+  .apd-go{position:absolute;left:32%;top:112px;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:#e62117;color:#fff;
+          font-size:12.5px;font-weight:800;white-space:nowrap;transform:translateX(-50%);box-shadow:0 3px 10px rgba(230,33,23,.35);animation:apdGo 8s ease infinite}
+  .apd-go.ig{left:70%;top:136px;background:linear-gradient(45deg,#f9ce34,#ee2a7b 50%,#6228d7);box-shadow:0 3px 10px rgba(214,41,118,.35);animation-name:apdGo2}
+  .apd-go.ig::before{content:none}
+  .apd-go::before{content:"";border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}
+  .apd-views{position:absolute;right:10px;top:10px;display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.95);
+             color:#16222f;font-size:12.5px;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.15);animation:apdViews 8s ease infinite}
+  .apd-views svg{width:15px;height:15px;fill:#e62117}
+  .apd-views em{font-style:normal;font-variant-numeric:tabular-nums;color:#e62117}
+  .apd-up{position:absolute;left:calc(32% + 30px);top:58px;font-size:13px;font-weight:900;color:#e62117;opacity:0;text-shadow:0 1px 0 #fff}
+  .apd-up.u1{animation:apdUp 8s ease infinite 0s}
+  .apd-up.u2{left:calc(32% - 56px);top:70px;animation:apdUp 8s ease infinite .4s}
+  .apd-up.u3{left:calc(70% + 30px);top:58px;color:#d62976;animation:apdUp2 8s ease infinite 0s}
+  .apd-up.u4{left:calc(70% - 56px);top:72px;color:#d62976;animation:apdUp2 8s ease infinite .4s}
+  @keyframes apdDrop{0%{transform:translateY(-70px) scale(.6);opacity:0}8%{transform:none;opacity:1}90%{opacity:1}97%,100%{opacity:0}}
+  @keyframes apdDrop2{0%,6%{transform:translateY(-70px) scale(.6);opacity:0}14%{transform:none;opacity:1}90%{opacity:1}97%,100%{opacity:0}}
+  @keyframes apdTap{0%,18%{transform:scale(.4);opacity:0}21%{transform:scale(1);opacity:1}26%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+  @keyframes apdTap2{0%,44%{transform:scale(.4);opacity:0}47%{transform:scale(1);opacity:1}52%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+  @keyframes apdGo{0%,23%{transform:translateX(-50%) scale(.6);opacity:0}28%{transform:translateX(-50%) scale(1);opacity:1}90%{opacity:1}97%,100%{opacity:0}}
+  @keyframes apdGo2{0%,49%{transform:translateX(-50%) scale(.6);opacity:0}54%{transform:translateX(-50%) scale(1);opacity:1}90%{opacity:1}97%,100%{opacity:0}}
+  @keyframes apdViews{0%,26%{opacity:0;transform:translateY(-6px)}31%{opacity:1;transform:none}92%{opacity:1}98%,100%{opacity:0}}
+  @keyframes apdUp{0%,30%{opacity:0;transform:none}35%{opacity:1}48%{opacity:0;transform:translateY(-30px)}100%{opacity:0}}
+  @keyframes apdUp2{0%,56%{opacity:0;transform:none}61%{opacity:1}74%{opacity:0;transform:translateY(-30px)}100%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){ .apd-pin, .apd-tap, .apd-go, .apd-views, .apd-up{animation:none} .apd-tap, .apd-up{display:none} }
+  .cr-show{display:grid;grid-template-columns:1fr 280px;gap:18px;align-items:start;margin:4px 0 22px}
+  .cr-fig{margin:0}.cr-fig figcaption{margin-top:8px;font-size:14px;line-height:1.55;color:var(--ink2)}
+  .cr-fig .apz-demo{margin:0;height:200px}
+  .cr-card img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 6px 22px rgba(16,48,79,.16)}
+  @media (max-width:640px){.cr-show{grid-template-columns:1fr}.cr-card{max-width:300px;margin:0 auto}}
 </style>
 <style>
 :root{--ink:#10304f;--ink2:#3f586f;--line:rgba(16,48,79,.13);--top:#55affd;--bottom:#e2eff3;
@@ -138,6 +183,19 @@ img{max-width:100%}
 <ul><li>流量全部導回你的頻道、帳號：App 裡不播放影片，只顯示縮圖、片名、名稱和連結（Instagram 只顯示帳號名稱和連結）</li>
 <li>免費，不用註冊；一支影片填一次，審核通過後幾個小時內就會出現在 App，不用等新版本</li>
 <li>想修改或拿下來，回覆通知信就好</li></ul></div>
+<h2>在 App 裡長這樣</h2>
+<div class="cr-show"><figure class="cr-fig">    <div class="apz-demo" role="img" aria-label="示意動畫：地圖上出現 YouTube、Instagram 圖示，釣友點了到 YouTube、Instagram 看，觀看數增加">
+      <svg class="land" viewBox="0 0 360 178" preserveAspectRatio="xMidYMid slice"><path d="M0 0h360v66c-30 8-52 30-84 34-38 5-58-18-96-12-40 6-60 40-104 44-34 3-56-8-76-18z" fill="#eef1e6"/>
+        <path d="M250 178c6-30 40-40 70-36 18 2 32 12 40 22v14z" fill="#eef1e6"/><path d="M0 100c26 10 48 18 76 16" stroke="#9cc7e4" stroke-width="2" fill="none" stroke-dasharray="4 5"/></svg>
+      <span class="apd-fish" style="left:14%;top:96px"></span><span class="apd-fish" style="left:76%;top:58px"></span><span class="apd-fish" style="left:68%;top:122px"></span>
+      <span class="apd-pin"><i style="background-image:url(../assets/creators_fish.webp)"></i><b></b></span>
+      <span class="apd-pin ig"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg></i></span>
+      <span class="apd-tap"></span><span class="apd-tap ig"></span>
+      <span class="apd-go">到 YouTube 看</span><span class="apd-go ig">到 Instagram 看</span>
+      <span class="apd-up u1">+1</span><span class="apd-up u2">+1</span><span class="apd-up u3">+1</span><span class="apd-up u4">+1</span>
+      <span class="apd-views"><svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.7 9.1 1.5 12c1.2 2.9 5 7 10.5 7s9.3-4.1 10.5-7C21.3 9.1 17.5 5 12 5zm0 11.2a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4zm0-6.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8z"/></svg><em id="apd-n">0</em> 次觀看</span>
+    </div>
+<figcaption>審核通過後，地圖上你拍片、發文的地方會出現你的圖示，釣友點一下就到 YouTube 或 Instagram 看</figcaption></figure><figure class="cr-fig cr-card"><img src="../assets/creators_card.webp" alt="App 裡的影片小卡示意：片名、頻道、釣到的魚、留言板、到 YouTube 看影片、推和不推" width="260" loading="lazy"><figcaption>點開是這張小卡：片名、頻道、釣到的魚、留言板，按紅色按鈕就到 YouTube 看（示意畫面）</figcaption></figure></div>
 <h2>放上地圖之前</h2>
 <ul><li>YouTube 影片、Instagram 貼文（含 Reels）都收；只收你自己頻道、帳號的（或你有權代表的）。</li>
 <li>地點要能合法釣魚：國家公園海域、保護區、封溪護漁、沒有公告垂釣區的漁港，我們會比對公告，不合法的不放。</li>
@@ -295,6 +353,16 @@ img{max-width:100%}
       .catch(function () { say("沒有送出去：網路不穩，請再按一次。", false); })
       .then(function () { b.disabled = false; b.textContent = "送出審核"; });
   });
+  var vn = $("apd-n");
+  if (vn) {
+    var t0 = performance.now(), nf = new Intl.NumberFormat("zh-TW");
+    var tick = function (now) {
+      var t = (now - t0) % 8000, e = function (x) { x = Math.max(0, Math.min(1, x)); return 1 - Math.pow(1 - x, 3); };
+      vn.textContent = nf.format(Math.round(e((t - 2300) / 1700) * 640 + e((t - 4400) / 2400) * 900));
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
 })();
 </script>
 </body>
