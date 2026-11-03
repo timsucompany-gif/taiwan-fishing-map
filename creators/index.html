@@ -141,6 +141,10 @@ form.cr{display:grid;gap:14px;margin-top:8px}
   .cr-card img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 6px 22px rgba(16,48,79,.16)}
   @media (max-width:640px){.cr-show{grid-template-columns:1fr}.cr-card{max-width:300px;margin:0 auto}}
   .cr-show1{grid-template-columns:1fr}.cr-show1 .cr-card{max-width:300px;margin:0 auto}
+  .cr-rec{position:relative}
+  .cr-rec video{display:block;width:100%;height:auto;aspect-ratio:540/1032;border-radius:22px;background:#dfe9f2;box-shadow:0 0 0 6px #16222f,0 10px 28px rgba(16,48,79,.25)}
+  .cr-rec .cr-tag{right:12px;top:12px}
+  .cr-rec figcaption{margin-top:14px;text-align:center}
   .cr-anim{position:relative;margin:4px 0 14px;text-align:left}
   .cr-anim .apz-demo{height:210px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(16,48,79,.14)}
   .cr-tag{position:absolute;right:10px;top:10px;z-index:5;padding:3px 10px;border-radius:999px;background:rgba(16,24,34,.72);color:#fff;
@@ -234,7 +238,7 @@ img{max-width:100%}
         <path d="M250 178c6-30 40-40 70-36 18 2 32 12 40 22v14z" fill="#eef1e6"/><path d="M0 100c26 10 48 18 76 16" stroke="#9cc7e4" stroke-width="2" fill="none" stroke-dasharray="4 5"/></svg>
       <span class="apd-fish" style="left:14%;top:96px"></span><span class="apd-fish" style="left:76%;top:58px"></span><span class="apd-fish" style="left:68%;top:122px"></span>
       <span class="apd-pin"><i style="background-image:url(../assets/creators_fish.webp)"></i><b></b></span>
-      <span class="apd-pin ig"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/></svg></i></span>
+      <span class="apd-pin ig th"><i style="background-image:url(../assets/creators_ig.webp)"></i><em class="igb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="17.3" cy="6.7" r="1.4" fill="currentColor"/></svg></em></span>
       <span class="apd-tap"></span><span class="apd-tap ig"></span>
       <span class="apd-go">到 YouTube 看</span><span class="apd-go ig">到 Instagram 看</span>
       <span class="apd-up u1">+1</span><span class="apd-up u2">+1</span><span class="apd-up u3">+1</span><span class="apd-up u4">+1</span>
@@ -249,6 +253,8 @@ img{max-width:100%}
 <p class="cr-note">App 本身就是主打釣魚人的工具，你的影片會出現在「正要出門找釣點」的人眼前，是非常精準的曝光。</p>
 <a class="cr-cta" href="#cr-form">免費填表，2 分鐘 ↓</a>
 </div>
+<h2 class="cr-h">點開長這樣</h2>
+<div class="cr-show cr-show1"><figure class="cr-fig cr-card cr-rec"><span class="cr-tag">App 實錄</span><video src="../assets/creators_rec.mp4" poster="../assets/creators_rec.jpg" autoplay muted loop playsinline preload="metadata" width="270" aria-label="App 實際操作錄影：在地圖上點 YouTube、Instagram 圖示，跳出小卡，按按鈕到 YouTube、Instagram 看"></video><figcaption>在地圖上點您的圖示，就會跳出這張小卡，按按鈕直接到 YouTube 或 Instagram 看</figcaption></figure></div>
 <h2 class="cr-h">怎麼運作</h2>
 <ol class="cr-steps">
 <li><i>1</i><b>填表</b><span>貼影片網址、點出釣點位置</span></li>
@@ -262,8 +268,6 @@ img{max-width:100%}
 <div><i class="pk3"></i><b>幾小時就上線</b><span>審核通過不用等 App 改版</span></div>
 <div><i class="pk4"></i><b>隨時可以拿下</b><span>回覆通知信就好</span></div>
 </div>
-<h2 class="cr-h">點開長這樣</h2>
-<div class="cr-show cr-show1"><figure class="cr-fig cr-card"><img src="../assets/creators_card.webp" alt="App 裡的影片小卡示意：片名、頻道、釣到的魚、留言板、到 YouTube 看影片、推和不推" width="260" loading="lazy"><figcaption>點開是這張小卡：片名、頻道、釣到的魚、留言板，按紅色按鈕就到 YouTube 看（示意畫面）</figcaption></figure></div>
 <h2 class="cr-h">放上地圖之前</h2>
 <div class="cr-rules">
 <div><i>✓</i><span><b>自己的頻道、帳號</b>YouTube 影片（含 Shorts）、IG 貼文（含 Reels）都收</span></div>
