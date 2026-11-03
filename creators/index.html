@@ -74,6 +74,14 @@ form.cr{display:grid;gap:14px;margin-top:8px}
 .cr textarea{min-height:64px;resize:vertical}
 .cr .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 #cr-map{height:320px;border-radius:14px;overflow:hidden;border:1px solid #c9d6e2}
+.cr-ok{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(10,25,40,.45)}
+.cr-ok[hidden]{display:none}
+.cr-okc{width:min(380px,100%);padding:24px 20px 18px;border-radius:20px;background:#fff;text-align:center;box-shadow:0 18px 44px rgba(10,30,60,.3)}
+.cr-oki{margin:0;font-size:44px}
+.cr-okc b{display:block;margin:6px 0 8px;font-size:21px}
+.cr-okc p{margin:0 0 16px;font-size:15px;line-height:1.6;color:var(--ink2)}
+.cr-okc #cr-ok-em{font-weight:800;color:var(--ink);word-break:break-all}
+.cr-okb{display:grid;gap:8px}
 /* 2026-11-03 使用者：「做個提示：標記一下你影片地圖位置」：還沒點位置前，地圖上方中間一顆會呼吸的提示，點了就收起來 */
 .cr-mapw{position:relative}
 .cr-maphint{position:absolute;left:50%;top:12px;z-index:3;display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;
@@ -311,6 +319,11 @@ img{max-width:100%}
 <p class="cr-msg" id="cr-msg" role="status" aria-live="polite"></p>
 <button class="btn primary" id="cr-go" type="submit">送出審核</button>
 </form>
+<div class="cr-ok" id="cr-ok" hidden role="dialog" aria-modal="true" aria-labelledby="cr-ok-t"><div class="cr-okc">
+<p class="cr-oki" aria-hidden="true">✅</p><b id="cr-ok-t">申請送出了</b>
+<p>我們會核對影片和地點，審核結果寄到 <span id="cr-ok-em"></span>。通過後幾個小時內，App 的地圖上就會出現你的頻道圖示。</p>
+<div class="cr-okb"><button type="button" class="btn primary" id="cr-ok-more">再申請一支</button><button type="button" class="btn" id="cr-ok-x">完成</button></div>
+</div></div>
 <p class="box">有問題、想一次放很多支影片，寫信到 <a href="mailto:timsucompany@gmail.com">timsucompany@gmail.com</a>。</p>
 </article>
 <footer class="foot"><nav><a href="../">下載 App</a><a href="../privacy/">隱私權政策</a><a href="../upload-terms/">上傳須知</a><a href="../creators/">YouTuber 合作</a><a href="mailto:timsucompany@gmail.com">聯絡我們</a></nav><div>© 2026 TIM SU</div></footer>
@@ -434,12 +447,19 @@ img{max-width:100%}
       .then(function (r) {
         if (r && r.ok) {
           say("收到了！審核通過後會寄信通知你，App 幾個小時內就會出現你的影片。要再分享一支，改影片網址和釣點再送一次就好。", true);
+          /* 2026-11-04 使用者：「送出申請要表示成功」：跳一張卡片（底下那行字容易沒看到） */
+          var ok = $("cr-ok");
+          if (ok) { $("cr-ok-em").textContent = body.email; ok.hidden = false; }
           sid = id();
           ["url", "spot", "alias", "area", "fish", "tip"].forEach(function (n) { f.elements[n].value = ""; });
         } else { say((r && r.error) || "沒有送出去，請再試一次。", false); }
       })
       .catch(function () { say("沒有送出去：網路不穩，請再按一次。", false); })
       .then(function () { b.disabled = false; b.textContent = "送出審核"; });
+  });
+  ["cr-ok-x", "cr-ok-more"].forEach(function (k) {
+    var b2 = $(k);
+    if (b2) { b2.addEventListener("click", function () { $("cr-ok").hidden = true; if (k === "cr-ok-more") { $("cr-form").elements.url.focus(); } }); }
   });
   var vn = $("apd-n");
   if (vn) {
