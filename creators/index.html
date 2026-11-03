@@ -19,9 +19,51 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
-.cr-hero{margin:4px 0 18px;padding:18px 18px 16px;border-radius:18px;background:linear-gradient(135deg,#fff4f4,#fff9ec);border:1px solid #f3d6d6}
-.cr-hero h2{margin:0 0 6px;padding:0;border:0;font-size:19px}
-.cr-hero ul{margin:6px 0 0}
+.cr-hero{margin:4px 0 22px;padding:22px 18px 20px;border-radius:20px;background:linear-gradient(140deg,#fff3e0 0%,#fff9ef 55%,#eef6ff 100%);
+  border:1px solid #f1d9b0;text-align:center}
+.cr-kick{display:inline-flex;align-items:center;margin:0 0 8px;padding:4px 12px;border-radius:999px;background:#fff;border:1px solid #f3d6d6;
+  font-size:13px;font-weight:800;color:#b3261e}
+.paper .cr-hero h2{margin:0 0 8px;padding:0;border:0;font-size:26px;line-height:1.3;font-weight:900;color:#1f2933}
+.cr-sub{margin:0 auto 14px;max-width:30em;font-size:15px;line-height:1.6;color:var(--ink2)}
+.cr-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 12px}
+.cr-stats div{padding:12px 4px 10px;border-radius:14px;background:#fff;box-shadow:0 2px 10px rgba(180,120,20,.12)}
+.cr-stats b{display:block;font-size:24px;font-weight:900;line-height:1.1;color:#d97a00}
+.cr-stats span{display:block;margin-top:4px;font-size:12px;line-height:1.4;color:var(--ink2)}
+.cr-note{margin:0 auto 14px;max-width:30em;font-size:14px;line-height:1.6;color:#6b4300;font-weight:700}
+.cr-cta{display:inline-block;padding:12px 26px;border-radius:999px;background:#f0a020;color:#fff !important;font-size:16px;font-weight:900;
+  text-decoration:none;box-shadow:0 4px 14px rgba(240,160,32,.35)}
+.cr-h{margin-top:26px}
+.cr-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0 14px;padding:0;list-style:none;counter-reset:none}
+.cr-steps li{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;border-radius:14px;background:#f5f9fd;
+  border:1px solid #dfe9f3;text-align:center}
+.cr-steps li:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:22px;font-size:20px;font-weight:900;color:#9bb3c9}
+.cr-steps i{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#2b7bd0;color:#fff;
+  font-style:normal;font-weight:900}
+.cr-steps b{font-size:15px}
+.cr-steps span{font-size:12.5px;line-height:1.45;color:var(--ink2)}
+.cr-perks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 18px}
+.cr-perks div{display:grid;grid-template-columns:36px 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;padding:12px;
+  border-radius:14px;background:#fff;border:1px solid #e6edf3}
+.cr-perks i{grid-row:1 / span 2;width:36px;height:36px;border-radius:10px;background:#fff3d6 center/22px no-repeat}
+.cr-perks b{font-size:15px}
+.cr-perks span{font-size:12.5px;line-height:1.4;color:var(--ink2)}
+.cr-perks .pk1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97a00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 17l6-6 4 4 6-7'/%3E%3Cpath d='M14 8h6v6'/%3E%3C/svg%3E")}
+.cr-perks .pk2{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97a00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M8 12.5l2.8 2.8L16 9.5'/%3E%3C/svg%3E")}
+.cr-perks .pk3{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97a00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 2L4 14h7l-1 8 9-12h-7z'/%3E%3C/svg%3E")}
+.cr-perks .pk4{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97a00' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12a8 8 0 1 0 2.3-5.7'/%3E%3Cpath d='M4 4v4h4'/%3E%3C/svg%3E")}
+.cr-rules{display:grid;gap:8px;margin:10px 0 6px}
+.cr-rules div{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:#f7faf6;border:1px solid #dcebd8}
+.cr-rules i{flex:0 0 auto;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#e3f2df;
+  font-style:normal;font-size:16px;font-weight:900;color:#2e7d32}
+.cr-rules span{font-size:13.5px;line-height:1.5;color:var(--ink2)}
+.cr-rules b{display:block;font-size:15px;color:var(--ink)}
+@media (max-width:520px){
+  .paper .cr-hero h2{font-size:23px}
+  .cr-stats b{font-size:20px}
+  .cr-steps{grid-template-columns:1fr 1fr}
+  .cr-steps li:nth-child(2)::after{display:none}
+  .cr-perks{grid-template-columns:1fr}
+}
 .cr-yt{display:inline-flex;align-items:center;justify-content:center;width:26px;height:18px;margin-right:6px;border-radius:5px;background:#ff0000;vertical-align:-3px}
 .cr-yt i{display:block;width:0;height:0;border-left:7px solid #fff;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent;margin-left:2px}
 form.cr{display:grid;gap:14px;margin-top:8px}
@@ -98,6 +140,12 @@ form.cr{display:grid;gap:14px;margin-top:8px}
   .cr-fig .apz-demo{margin:0;height:200px}
   .cr-card img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 6px 22px rgba(16,48,79,.16)}
   @media (max-width:640px){.cr-show{grid-template-columns:1fr}.cr-card{max-width:300px;margin:0 auto}}
+  .cr-show1{grid-template-columns:1fr}.cr-show1 .cr-card{max-width:300px;margin:0 auto}
+  .cr-anim{position:relative;margin:4px 0 14px;text-align:left}
+  .cr-anim .apz-demo{height:210px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(16,48,79,.14)}
+  .cr-tag{position:absolute;right:10px;top:10px;z-index:5;padding:3px 10px;border-radius:999px;background:rgba(16,24,34,.72);color:#fff;
+    font-size:12px;font-weight:800;letter-spacing:.05em}
+  .cr-anim figcaption{text-align:center}
 </style>
 <style>
 :root{--ink:#10304f;--ink2:#3f586f;--line:rgba(16,48,79,.13);--top:#55affd;--bottom:#e2eff3;
@@ -178,13 +226,10 @@ img{max-width:100%}
 <article class="paper">
 <h1>YouTuber 合作專區</h1>
 <p class="date">影片放上地圖，觀眾導回你的頻道</p>
-<div class="cr-hero"><h2><span class="cr-yt"><i></i></span>把你的釣魚影片、貼文放上地圖</h2>
-<p>台灣釣點地圖的使用者在地圖上找釣點時，會在你拍片、發文的地方看到你的頻道或帳號圖示，點一下就到 YouTube 或 Instagram 看你的內容。</p>
-<ul><li>流量全部導回你的頻道、帳號：App 裡不播放影片，只顯示縮圖、片名、名稱和連結（Instagram 只顯示帳號名稱和連結）</li>
-<li>免費，不用註冊；一支影片填一次，審核通過後幾個小時內就會出現在 App，不用等新版本</li>
-<li>想修改或拿下來，回覆通知信就好</li></ul></div>
-<h2>在 App 裡長這樣</h2>
-<div class="cr-show"><figure class="cr-fig">    <div class="apz-demo" role="img" aria-label="示意動畫：地圖上出現 YouTube、Instagram 圖示，釣友點了到 YouTube、Instagram 看，觀看數增加">
+<div class="cr-hero">
+<p class="cr-kick"><span class="cr-yt"><i></i></span>YouTuber・IG 創作者合作</p>
+<h2>讓釣魚人在地圖上<br>看到您的影片</h2>
+<figure class="cr-fig cr-anim"><span class="cr-tag">示意影片</span>    <div class="apz-demo" role="img" aria-label="示意動畫：地圖上出現 YouTube、Instagram 圖示，釣友點了到 YouTube、Instagram 看，觀看數增加">
       <svg class="land" viewBox="0 0 360 178" preserveAspectRatio="xMidYMid slice"><path d="M0 0h360v66c-30 8-52 30-84 34-38 5-58-18-96-12-40 6-60 40-104 44-34 3-56-8-76-18z" fill="#eef1e6"/>
         <path d="M250 178c6-30 40-40 70-36 18 2 32 12 40 22v14z" fill="#eef1e6"/><path d="M0 100c26 10 48 18 76 16" stroke="#9cc7e4" stroke-width="2" fill="none" stroke-dasharray="4 5"/></svg>
       <span class="apd-fish" style="left:14%;top:96px"></span><span class="apd-fish" style="left:76%;top:58px"></span><span class="apd-fish" style="left:68%;top:122px"></span>
@@ -195,12 +240,37 @@ img{max-width:100%}
       <span class="apd-up u1">+1</span><span class="apd-up u2">+1</span><span class="apd-up u3">+1</span><span class="apd-up u4">+1</span>
       <span class="apd-views"><svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.7 9.1 1.5 12c1.2 2.9 5 7 10.5 7s9.3-4.1 10.5-7C21.3 9.1 17.5 5 12 5zm0 11.2a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4zm0-6.6a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8z"/></svg><em id="apd-n">0</em> 次觀看</span>
     </div>
-<figcaption>審核通過後，地圖上你拍片、發文的地方會出現你的圖示，釣友點一下就到 YouTube 或 Instagram 看</figcaption></figure><figure class="cr-fig cr-card"><img src="../assets/creators_card.webp" alt="App 裡的影片小卡示意：片名、頻道、釣到的魚、留言板、到 YouTube 看影片、推和不推" width="260" loading="lazy"><figcaption>點開是這張小卡：片名、頻道、釣到的魚、留言板，按紅色按鈕就到 YouTube 看（示意畫面）</figcaption></figure></div>
-<h2>放上地圖之前</h2>
-<ul><li>YouTube 影片、Instagram 貼文（含 Reels）都收；只收你自己頻道、帳號的（或你有權代表的）。</li>
-<li>地點要能合法釣魚：國家公園海域、保護區、封溪護漁、沒有公告垂釣區的漁港，我們會比對公告，不合法的不放。</li>
-<li>保育類魚種不收；位置請點在實際釣魚的水邊，不用很精準，大概範圍就好。</li></ul>
-<h2>填寫資料</h2>
+<figcaption>地圖上您拍片的地方會出現您的圖示，釣友點一下就到 YouTube 或 Instagram 看</figcaption></figure>
+<div class="cr-stats">
+<div><b>8,000+</b><span>推廣不到一個月<br>累積下載</span></div>
+<div><b>釣魚專用</b><span>App 使用者<br>都是釣魚人</span></div>
+<div><b>10 萬+</b><span>Threads 開發日記<br>單篇觀看</span></div>
+</div>
+<p class="cr-note">App 本身就是主打釣魚人的工具，你的影片會出現在「正要出門找釣點」的人眼前，是非常精準的曝光。</p>
+<a class="cr-cta" href="#cr-form">免費填表，2 分鐘 ↓</a>
+</div>
+<h2 class="cr-h">怎麼運作</h2>
+<ol class="cr-steps">
+<li><i>1</i><b>填表</b><span>貼影片網址、點出釣點位置</span></li>
+<li><i>2</i><b>審核</b><span>確認地點合法，通常當天</span></li>
+<li><i>3</i><b>上地圖</b><span>你的頻道圖示出現在那個釣點</span></li>
+<li><i>4</i><b>導回頻道</b><span>釣友點了直接到 YouTube／IG 看</span></li>
+</ol>
+<div class="cr-perks">
+<div><i class="pk1"></i><b>流量全部給你</b><span>App 裡不播放，只放縮圖、片名和連結</span></div>
+<div><i class="pk2"></i><b>完全免費</b><span>不用註冊、不用簽約</span></div>
+<div><i class="pk3"></i><b>幾小時就上線</b><span>審核通過不用等 App 改版</span></div>
+<div><i class="pk4"></i><b>隨時可以拿下</b><span>回覆通知信就好</span></div>
+</div>
+<h2 class="cr-h">點開長這樣</h2>
+<div class="cr-show cr-show1"><figure class="cr-fig cr-card"><img src="../assets/creators_card.webp" alt="App 裡的影片小卡示意：片名、頻道、釣到的魚、留言板、到 YouTube 看影片、推和不推" width="260" loading="lazy"><figcaption>點開是這張小卡：片名、頻道、釣到的魚、留言板，按紅色按鈕就到 YouTube 看（示意畫面）</figcaption></figure></div>
+<h2 class="cr-h">放上地圖之前</h2>
+<div class="cr-rules">
+<div><i>✓</i><span><b>自己的頻道、帳號</b>YouTube 影片（含 Shorts）、IG 貼文（含 Reels）都收</span></div>
+<div><i>⚖</i><span><b>地點要能合法釣魚</b>國家公園海域、保護區、封溪、沒有公告垂釣區的漁港不收，我們會比對公告</span></div>
+<div><i>🐟</i><span><b>不收保育類魚種</b>位置點在釣魚的水邊，大概範圍就好</span></div>
+</div>
+<h2 class="cr-h" id="cr-form-h">填寫資料</h2>
 <form class="cr" id="cr-form" novalidate>
 <div class="seg" role="radiogroup" aria-label="平台"><label><input type="radio" name="pf" value="yt" checked><span>YouTube 影片</span></label><label><input type="radio" name="pf" value="ig"><span>Instagram 貼文</span></label></div>
 <div class="two"><label><span id="t-l1">頻道名稱</span><input type="text" name="chName" maxlength="60" required></label>
