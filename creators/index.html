@@ -150,6 +150,11 @@ form.cr{display:grid;gap:14px;margin-top:8px}
   @keyframes apdViews{0%,26%{opacity:0;transform:translateY(-6px)}31%{opacity:1;transform:none}92%{opacity:1}98%,100%{opacity:0}}
   @keyframes apdUp{0%,30%{opacity:0;transform:none}35%{opacity:1}48%{opacity:0;transform:translateY(-30px)}100%{opacity:0}}
   @keyframes apdUp2{0%,56%{opacity:0;transform:none}61%{opacity:1}74%{opacity:0;transform:translateY(-30px)}100%{opacity:0}}
+  /* IG 那顆的封面照片和右下小 IG 標誌：放在這一段裡（官網合作專區照這段抓動畫的樣式；放外面官網只看到照片左上角，2026-11-04） */
+  .apz-demo .apd-pin.ig.th i{background:#20262d center/cover no-repeat;border:3.5px solid #fff;box-shadow:0 0 0 2.5px #e1306c,0 3px 9px rgba(0,0,0,.35)}
+  .apz-demo .apd-pin .igb{position:absolute;left:18px;top:44px;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:6px;
+    background:linear-gradient(45deg,#f9ce34,#ee2a7b 50%,#6228d7);color:#fff;box-shadow:0 0 0 2px #fff,0 1px 3px rgba(0,0,0,.35)}
+  .apz-demo .apd-pin .igb svg{width:13px;height:13px}
   @media (prefers-reduced-motion:reduce){ .apd-pin, .apd-tap, .apd-go, .apd-views, .apd-up{animation:none} .apd-tap, .apd-up{display:none} }
   .cr-show{display:grid;grid-template-columns:1fr 280px;gap:18px;align-items:start;margin:4px 0 22px}
   .cr-fig{margin:0}.cr-fig figcaption{margin-top:8px;font-size:14px;line-height:1.55;color:var(--ink2)}
