@@ -37,6 +37,20 @@ img{max-width:100%}
   background:linear-gradient(180deg,rgba(0,0,0,0),var(--bottom))}
 .art{position:relative;padding-top:86%}
 .art.short{padding-top:72%}
+/* 開頭的手機（AI 魚圖畫面）＋浮在旁邊的釣友照片卡（2026-11-27，參考 Fishbrain 首頁）：插畫左半是海、右邊是釣客，手機放左邊稍微斜 */
+.art.phone{padding-top:128%}
+.hphone{position:absolute;left:7%;top:27%;width:36%;aspect-ratio:480/1039;border-radius:26px;border:5px solid #0f1720;
+  overflow:hidden;background:#0f1720;transform:rotate(-5deg);box-shadow:0 18px 40px rgba(16,38,61,.38)}
+.hphone img{display:block;width:100%;height:100%;object-fit:cover}
+.hcard{position:absolute;z-index:2;width:25%;padding:5px 5px 7px;border-radius:12px;background:#fff;
+  box-shadow:0 10px 26px rgba(16,38,61,.3)}
+.hcard.a{left:38%;top:51%;transform:rotate(-4deg)}
+.hcard.b{left:64%;top:57%;transform:rotate(5deg)}
+.hcard img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 58%;border-radius:8px}
+.hcard span{display:block;margin-top:5px;font-size:11px;line-height:1.35;color:var(--ink2);text-align:center}
+.hcard b{display:block;font-size:12.5px;color:var(--ink)}
+.hcard .ig{display:block;margin:2px -3px 0;font-size:8.5px;line-height:1.3;letter-spacing:-.02em;color:var(--ink2);text-align:center;
+  white-space:nowrap}
 .tag{position:absolute;left:6%;top:6%;width:52%;height:auto;
   filter:drop-shadow(0 0 10px rgba(255,255,255,.85))}
 .card{position:relative;margin:0 14px;padding:20px 18px 18px;border-radius:24px;background:var(--glass);
@@ -50,12 +64,15 @@ img{max-width:100%}
 .feat li{display:flex;align-items:center;gap:11px;font-size:15.5px;color:var(--ink2)}
 .feat svg{flex:0 0 auto;width:32px;height:32px;padding:6px;border-radius:10px;background:#e3f1fc;
   stroke:#1f6fb3;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.stores{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.store{display:flex;flex-direction:column;justify-content:center;min-height:54px;padding:7px 14px;
-  border-radius:14px;background:var(--btn);color:#fff;text-decoration:none;line-height:1.25}
-.store small{font-size:12px;opacity:.82}
-.store b{font-size:17px;font-weight:700}
-.store.off{background:rgba(16,38,61,.07);color:var(--ink2)}
+.stores{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.store{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:54px;padding:6px 8px;
+  border-radius:11px;border:1px solid #a6a6a6;background:#000;color:#fff;text-decoration:none;line-height:1.1;
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"PingFang TC","Microsoft JhengHei",sans-serif}
+.store .si{flex:0 0 auto;width:24px;height:24px}
+.store span{display:flex;flex-direction:column;white-space:nowrap;min-width:0}
+.store small{font-size:9.5px;font-weight:500;letter-spacing:.02em}
+.store b{font-size:clamp(15px,4.6vw,19px);font-weight:600;letter-spacing:-.01em}
+.store.off{opacity:.45}
 .foot{position:relative;padding:22px 16px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;font-size:13.5px;
   color:var(--ink2)}
 .foot nav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-bottom:6px}
